@@ -1,6 +1,13 @@
+using BookStoreApp.API.Data;
 using Serilog;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ApplicationDbContext>(option =>
+{
+  option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+});
 
 // Add services to the container.
 
